@@ -9,16 +9,13 @@ export const metadata: Metadata = {
 }
 
 export default function ShelfPage() {
-  const { beforeRecord, firstRecorded } = getCounts()
+  const { read } = getCounts()
 
   return (
     <div>
       <h1 className="font-serif text-4xl sm:text-5xl">The Shelf</h1>
       <p className="mt-3 max-w-xl font-serif text-lg italic text-ink-soft">
-        {beforeRecord > 0
-          ? `Book №${firstRecorded} onwards. The first ${beforeRecord} were read before this
-             record began.`
-          : 'Everything we have read, in the order we read it.'}
+        All {read} books, in the order we read them.
       </p>
 
       <div className="mt-10">

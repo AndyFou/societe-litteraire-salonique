@@ -8,13 +8,13 @@ export const metadata: Metadata = {
 }
 
 export default function ClubPage() {
-  const { clubTotal } = getCounts()
+  const { read } = getCounts()
 
   const facts: { label: string; value: string }[] = [
     { label: 'Founded', value: String(club.foundedYear) },
     { label: 'Home', value: club.city },
     { label: 'We meet', value: 'Remotely, once a month or two' },
-    { label: 'Read so far', value: `${clubTotal} books` },
+    { label: 'Read so far', value: `${read} books` },
   ]
 
   return (

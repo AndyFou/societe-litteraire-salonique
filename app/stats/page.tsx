@@ -51,53 +51,45 @@ export default function StatsPage() {
       <div>
         <h1 className="font-serif text-4xl sm:text-5xl">By the Numbers</h1>
         <p className="mt-3 max-w-xl font-serif text-lg italic text-ink-soft">
-          What {s.recorded} books look like from a distance.
+          What {s.total} books look like from a distance.
         </p>
       </div>
 
-      {/* `clubTotal` counts from the club's own numbering; everything below it is
-          drawn only from the books recorded here, so the two are labelled apart. */}
       <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
-        <Tile value={s.clubTotal} label="books read by the club" />
-        <Tile value={s.recorded} label="recorded here" />
+        <Tile value={s.total} label="books read" />
         <Tile value={s.countries.length} label="countries represented" />
         <Tile value={s.languages.length} label="original languages" />
+        <Tile value={s.genres.length} label="forms, from novels to plays" />
         {s.pagesKnown > 0 && (
           <Tile
             value={s.totalPages.toLocaleString('en-GB')}
             label={
-              s.pagesKnown === s.recorded
+              s.pagesKnown === s.total
                 ? 'pages, all told'
-                : `pages (${s.pagesKnown} of ${s.recorded} books)`
+                : `pages (${s.pagesKnown} of ${s.total} books)`
             }
           />
         )}
       </div>
 
-      {s.beforeRecord > 0 && (
-        <p className="max-w-2xl text-[0.9375rem] leading-relaxed text-ink-soft">
-          The club has read {s.clubTotal} books. The {s.beforeRecord} that came before №
-          {s.firstRecorded} predate this record, so every count below describes only the{' '}
-          {s.recorded} listed on the shelf.
-        </p>
+      {/* Per-year needs a date on every book; hidden until the early years are dated. */}
+      {s.allDated && (
+        <section>
+          <p className="eyebrow mb-4">Books per year</p>
+          <div className="flex items-end gap-3">
+            {s.perYear.map(({ year, count }) => (
+              <div key={year} className="flex flex-1 flex-col items-center gap-2">
+                <span className="text-xs tabular-nums text-ink-faint">{count}</span>
+                <div
+                  className="w-full max-w-[64px] bg-accent-soft"
+                  style={{ height: `${Math.max((count / tallestYear) * 120, 4)}px` }}
+                />
+                <span className="text-xs text-ink-soft">{year}</span>
+              </div>
+            ))}
+          </div>
+        </section>
       )}
-
-      <section>
-        <p className="eyebrow mb-4">Books per year</p>
-        <div className="flex items-end gap-3">
-          {s.perYear.map(({ year, count }) => (
-            <div key={year} className="flex flex-1 flex-col items-center gap-2">
-              <span className="text-xs tabular-nums text-ink-faint">{count}</span>
-              {/* Capped so a short club history doesn't render as wide slabs. */}
-              <div
-                className="w-full max-w-[64px] bg-accent-soft"
-                style={{ height: `${Math.max((count / tallestYear) * 120, 4)}px` }}
-              />
-              <span className="text-xs text-ink-soft">{year}</span>
-            </div>
-          ))}
-        </div>
-      </section>
 
       <div className="grid gap-12 sm:grid-cols-2">
         <Ranking title="Most-read authors" rows={s.authors.filter(([, n]) => n > 1)} />
@@ -129,15 +121,18 @@ export default function StatsPage() {
         </section>
       )}
 
-      <section>
-        <p className="eyebrow mb-4">How we meet</p>
-        <p className="max-w-2xl text-[0.9375rem] leading-relaxed text-ink-soft">
-          {s.inPerson === 0
-            ? `All ${s.recorded} of these meetings happened over video.`
-            : `${s.recorded - s.inPerson} of these ${s.recorded} meetings happened over video;
-               ${s.inPerson === 1 ? 'one was' : `${s.inPerson} were`} in the same room.`}
-        </p>
-      </section>
+      {/* Only counts meetings we actually logged (the recent ones). */}
+      {s.loggedMeetings > 0 && (
+        <section>
+          <p className="eyebrow mb-4">How we meet</p>
+          <p className="max-w-2xl text-[0.9375rem] leading-relaxed text-ink-soft">
+            {s.inPerson === 0
+              ? `Of the ${s.loggedMeetings} meetings we've noted, every one happened over video.`
+              : `Of the ${s.loggedMeetings} meetings we've noted, ${s.loggedMeetings - s.inPerson}
+                 happened over video and ${s.inPerson === 1 ? 'one' : s.inPerson} in the same room.`}
+          </p>
+        </section>
+      )}
     </div>
   )
 }

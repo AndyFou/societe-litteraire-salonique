@@ -56,7 +56,8 @@ export function BookCard({ book }: { book: Book }) {
         <p className="mt-0.5 text-sm text-ink-soft">{book.author}</p>
 
         <p className="mt-1.5 text-xs text-ink-faint">
-          №{book.number} · {formatReadOn(book.readOn, book.readThrough)}
+          №{book.number}
+          {book.readOn ? ` · ${formatReadOn(book.readOn, book.readThrough)}` : ''}
           {book.pickedBy ? ` · chosen by ${book.pickedBy}` : ''}
         </p>
 

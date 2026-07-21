@@ -65,7 +65,7 @@ export function Shelf({
   const visible = useMemo(() => {
     const filtered = books.filter(
       (b) =>
-        (!year || b.readOn.startsWith(year)) &&
+        (!year || (b.readOn?.startsWith(year) ?? false)) &&
         (!genre || b.genre === genre) &&
         (!country || b.country === country),
     )
@@ -82,14 +82,14 @@ export function Shelf({
   }, [books, year, genre, country, sort])
 
   // Year headings only make sense when the list runs in date order; any other
-  // sort gets one flat grid.
+  // sort gets one flat grid. Books with no known date gather under "Earlier".
   const sections = useMemo(() => {
-    if (sort !== 'recent' && sort !== 'oldest') return [{ year: null, books: visible }]
+    if (sort !== 'recent' && sort !== 'oldest') return [{ heading: null, books: visible }]
 
-    const out: { year: string; books: Book[] }[] = []
+    const out: { heading: string; books: Book[] }[] = []
     for (const book of visible) {
-      const year = book.readOn.slice(0, 4)
-      if (out[out.length - 1]?.year !== year) out.push({ year, books: [] })
+      const heading = book.readOn ? book.readOn.slice(0, 4) : 'Earlier'
+      if (out[out.length - 1]?.heading !== heading) out.push({ heading, books: [] })
       out[out.length - 1].books.push(book)
     }
     return out
@@ -129,9 +129,9 @@ export function Shelf({
       ) : (
         <div className="space-y-12">
           {sections.map((section) => (
-            <section key={section.year ?? '__all'}>
-              {section.year && (
-                <h2 className="mb-6 font-serif text-2xl text-ink-faint">{section.year}</h2>
+            <section key={section.heading ?? '__all'}>
+              {section.heading && (
+                <h2 className="mb-6 font-serif text-2xl text-ink-faint">{section.heading}</h2>
               )}
               <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
                 {section.books.map((book) => (

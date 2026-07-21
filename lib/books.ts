@@ -59,7 +59,10 @@ export function formatMeeting(date: string) {
 /** Newest first. Book numbers are the club's own count, so they sort reliably. */
 export const shelf = [...books].sort((a, b) => b.number - a.number)
 
-export const years = Array.from(new Set(shelf.map((b) => b.readOn.slice(0, 4))))
+// Only books with a known read-date contribute years.
+export const years = Array.from(
+  new Set(shelf.map((b) => b.readOn?.slice(0, 4)).filter(Boolean) as string[]),
+)
   .sort()
   .reverse()
 export const genres = Array.from(new Set(shelf.map((b) => b.genre).filter(Boolean) as string[])).sort()
@@ -67,23 +70,12 @@ export const countries = Array.from(
   new Set(shelf.map((b) => b.country).filter(Boolean) as string[]),
 ).sort()
 
-/**
- * The club counts its books from #1; this log starts partway in. The true total
- * is the highest number we know of — including the book in progress — not the
- * number of rows on the shelf.
- */
 export function getCounts() {
-  const numbers = [...shelf.map((b) => b.number), currentlyReading?.book.number ?? 0]
-  const clubTotal = Math.max(...numbers, 0)
-  const recorded = shelf.length
-  const firstRecorded = Math.min(...shelf.map((b) => b.number))
-
   return {
-    clubTotal,
-    recorded,
-    firstRecorded,
-    /** Books read before this log began. */
-    beforeRecord: firstRecorded - 1,
+    /** Books the club has finished. */
+    read: shelf.length,
+    /** The number of the book on the go, if any. */
+    current: currentlyReading?.book.number ?? null,
   }
 }
 
@@ -102,22 +94,28 @@ export function getStats() {
   const withPages = shelf.filter((b) => b.pages)
   const totalPages = withPages.reduce((sum, b) => sum + (b.pages ?? 0), 0)
 
+  const dated = shelf.filter((b) => b.readOn)
   const perYear = years
-    .map((y) => ({ year: y, count: shelf.filter((b) => b.readOn.startsWith(y)).length }))
+    .map((y) => ({ year: y, count: shelf.filter((b) => b.readOn?.startsWith(y)).length }))
     .sort((a, b) => a.year.localeCompare(b.year))
 
+  const logged = shelf.filter((b) => b.metOn) // meetings we have a record of
   const withPageCounts = [...withPages].sort((a, b) => (a.pages ?? 0) - (b.pages ?? 0))
 
   return {
     ...getCounts(),
+    total: shelf.length,
     totalPages,
     pagesKnown: withPages.length,
+    // Date-based views only make sense once every book carries a date.
+    allDated: dated.length === shelf.length,
     perYear,
     authors: tally(shelf.map((b) => b.author)),
     countries: tally(shelf.map((b) => b.country)),
     languages: tally(shelf.map((b) => b.language)),
     genres: tally(shelf.map((b) => b.genre)),
-    inPerson: shelf.filter((b) => b.inPerson).length,
+    loggedMeetings: logged.length,
+    inPerson: logged.filter((b) => b.inPerson).length,
     shortest: withPageCounts[0] ?? null,
     longest: withPageCounts[withPageCounts.length - 1] ?? null,
   }
