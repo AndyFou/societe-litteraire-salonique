@@ -145,7 +145,7 @@ export const books: Book[] = [
     language: 'English',
     genre: 'Novel',
     goodreads: 'https://www.goodreads.com/book/show/6692041-mornings-in-jenin',
-    cover: 'https://covers.openlibrary.org/b/id/6935052-L.jpg',
+    cover: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1767631844i/6692041.jpg',
   },
   {
     number: 38,
