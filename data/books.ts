@@ -167,7 +167,6 @@ export const books: Book[] = [
   // Recovered from the club's own list. Mostly no read-dates survive, so these
   // show by number alone and gather under "Earlier" on the shelf. country /
   // language / genre are inferred from each author and are worth a check.
-  // Goodreads links can be added later.
   {
     number: 37,
     titleEn: 'Lessons in Chemistry',
@@ -177,6 +176,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/58065033-lessons-in-chemistry',
     cover: '/covers/37.jpg',
   },
   {
@@ -187,6 +187,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/18423.The_Left_Hand_of_Darkness',
     cover: '/covers/36.jpg',
   },
   {
@@ -196,6 +197,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/en/book/show/89724.We_Have_Always_Lived_in_the_Castle',
     cover: '/covers/35.jpg',
   },
   {
@@ -205,6 +207,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Non-fiction',
+    goodreads: 'https://www.goodreads.com/en/book/show/25489625-between-the-world-and-me',
     cover: '/covers/34.jpg',
   },
   {
@@ -214,6 +217,7 @@ export const books: Book[] = [
     country: 'Ireland',
     language: 'English',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/en/book/show/158875813-prophet-song',
     cover: '/covers/33.jpg',
   },
   {
@@ -223,6 +227,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Short stories',
+    goodreads: 'https://www.goodreads.com/en/book/show/41160292-exhalation',
     cover: '/covers/32.jpg',
   },
   {
@@ -232,6 +237,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/en/book/show/72355.Poor_Things',
     cover: '/covers/31.jpg',
   },
   {
@@ -241,6 +247,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Non-fiction',
+    goodreads: 'https://www.goodreads.com/en/book/show/368916.84_Charing_Cross_Road',
     cover: '/covers/30.jpg',
   },
   {
@@ -250,6 +257,7 @@ export const books: Book[] = [
     country: 'Ireland',
     language: 'English',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/58662236-small-things-like-these',
     cover: '/covers/29.jpg',
   },
   {
@@ -259,6 +267,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/56646330-assembly',
     cover: '/covers/28.jpg',
   },
   {
@@ -268,6 +277,7 @@ export const books: Book[] = [
     country: 'Argentina',
     language: 'Spanish',
     genre: 'Short stories',
+    goodreads: 'https://www.goodreads.com/book/show/30375706-things-we-lost-in-the-fire',
     cover: '/covers/27.jpg',
   },
   {
@@ -278,6 +288,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Short stories',
+    goodreads: 'https://www.goodreads.com/book/show/11453.Elephant_and_Other_Stories',
     cover: '/covers/26.jpg',
   },
   {
@@ -287,6 +298,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/58968414-the-people-on-platform-5',
     cover: '/covers/25.jpg',
   },
   {
@@ -296,6 +308,7 @@ export const books: Book[] = [
     country: 'Ghana',
     language: 'English',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/27071490-homegoing',
     cover: '/covers/24.jpg',
   },
   {
@@ -305,6 +318,7 @@ export const books: Book[] = [
     country: 'Japan',
     language: 'Japanese',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/59629744-diary-of-a-void',
     cover: '/covers/23.jpg',
   },
   {
@@ -314,6 +328,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Non-fiction',
+    goodreads: 'https://www.goodreads.com/book/show/860800.The_Fire_Next_Time',
     cover: '/covers/22.jpg',
   },
   {
@@ -323,6 +338,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/41038.The_Rotters_Club',
     cover: '/covers/21.jpg',
   },
   {
@@ -333,6 +349,7 @@ export const books: Book[] = [
     country: 'Russia',
     language: 'Russian',
     genre: 'Novella',
+    goodreads: 'https://www.goodreads.com/book/show/18386.The_Death_of_Ivan_Ilych',
     cover: '/covers/20.jpg',
   },
   {
@@ -343,6 +360,7 @@ export const books: Book[] = [
     country: 'France',
     language: 'French',
     genre: 'Memoir',
+    goodreads: 'https://www.goodreads.com/book/show/145625252-the-years',
     cover: '/covers/19.jpg',
   },
   {
@@ -352,6 +370,7 @@ export const books: Book[] = [
     country: 'Sweden',
     language: 'Swedish',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/18774964-a-man-called-ove',
     cover: '/covers/18.jpg',
   },
   {
@@ -361,6 +380,7 @@ export const books: Book[] = [
     country: 'Turkey',
     language: 'English',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/56587382-the-island-of-missing-trees',
     cover: '/covers/17.jpg',
   },
   {
@@ -370,6 +390,7 @@ export const books: Book[] = [
     country: 'South Korea',
     language: 'Korean',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/46041199-kim-jiyoung-born-1982',
     cover: '/covers/16.jpg',
   },
   {
@@ -379,6 +400,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/53414230-open-water',
     cover: '/covers/15.jpg',
   },
   {
@@ -388,6 +410,7 @@ export const books: Book[] = [
     country: 'Austria',
     language: 'German',
     genre: 'Novella',
+    goodreads: 'https://www.goodreads.com/book/show/6907482-fear',
     cover: '/covers/14.jpg',
   },
   {
@@ -398,6 +421,7 @@ export const books: Book[] = [
     country: 'Greece',
     language: 'Greek',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/871294.Z_Vassilis_Vassilikos',
     cover: '/covers/13.jpg',
   },
   {
@@ -407,6 +431,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/6334.Never_Let_Me_Go',
     cover: '/covers/12.jpg',
   },
   {
@@ -416,6 +441,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/11.The_Hitchhiker_s_Guide_to_the_Galaxy',
     cover: '/covers/11.jpg',
   },
   {
@@ -426,6 +452,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/6149.Beloved',
     cover: '/covers/10.jpg',
   },
   {
@@ -435,6 +462,7 @@ export const books: Book[] = [
     country: 'Canada',
     language: 'English',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/38447.The_Handmaid_s_Tale',
     cover: '/covers/9.jpg',
   },
   {
@@ -445,6 +473,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Non-fiction',
+    goodreads: 'https://www.goodreads.com/book/show/25658482-at-the-existentialist-caf',
     cover: '/covers/8.jpg',
   },
   {
@@ -455,6 +484,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/12697427-one-flew-over-the-cuckoo-s-nest',
     cover: '/covers/7.jpg',
   },
   {
@@ -465,6 +495,7 @@ export const books: Book[] = [
     country: 'Russia',
     language: 'Russian',
     genre: 'Play',
+    goodreads: 'https://www.goodreads.com/book/show/143513.The_Three_Sisters',
     cover: '/covers/6.jpg',
   },
   {
@@ -475,6 +506,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Non-fiction',
+    goodreads: 'https://www.goodreads.com/book/show/6452731-justice',
     cover: '/covers/5.jpg',
   },
   {
@@ -485,6 +517,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Non-fiction',
+    goodreads: 'https://www.goodreads.com/book/show/18521.A_Room_of_One_s_Own',
     cover: '/covers/4.jpg',
   },
   {
@@ -495,6 +528,7 @@ export const books: Book[] = [
     country: 'France',
     language: 'French',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/23266902-the-incorrigible-optimists-club',
     cover: '/covers/3.jpg',
   },
   {
@@ -504,6 +538,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Non-fiction',
+    goodreads: 'https://www.goodreads.com/book/show/63697.The_Man_Who_Mistook_His_Wife_for_a_Hat_and_Other_Clinical_Tales',
     cover: '/covers/2.jpg',
   },
   {
@@ -513,6 +548,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/7624.Lord_of_the_Flies',
     cover: '/covers/1.jpg',
   },
 ]
