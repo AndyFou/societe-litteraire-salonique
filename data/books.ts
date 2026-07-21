@@ -1,20 +1,21 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // THE SHELF
 //
-// Books are numbered as the club numbers them. The record here starts at #38;
-// everything before that was read before this log began, and the site works out
-// the club's true total from the highest number rather than counting rows.
+// The full record, books #1–47, numbered as the club numbers them. Only the
+// recent books carry dates; the early years are known by title alone.
 //
-//   number     The club's own count — 38ο Βιβλίο, 39ο Βιβλίο, …
+//   number     The club's own count — 1ο Βιβλίο … 47ο Βιβλίο.
 //   titleEn /  Give whichever exist. At least one is required. The English title
 //   titleGr    leads on the card when both are present, with the Greek beneath;
 //              Greek-language books show the Greek title alone.
-//   readOn     "YYYY-MM" — the month the book was read.
+//   readOn     "YYYY-MM" the book was read (or just "YYYY" if only the year is
+//              known). Optional — undated books gather under "Earlier".
 //   readThrough Optional second month, for books that spanned two.
 //   metOn      "YYYY-MM-DD" — the discussion date.
 //   inPerson   Meetings are remote by default; set true for the rare live one.
 //   goodreads  Link on the title.
-//   cover      Any image URL; omit and a typographic cover is drawn instead.
+//   cover      Image path. Covers are hosted locally under /public/covers; omit
+//              and a typographic spine is drawn instead.
 //   pages      Omit rather than guess — the page-count stat hides itself when
 //              nothing is recorded, but a wrong number silently corrupts it.
 // ─────────────────────────────────────────────────────────────────────────────
@@ -58,7 +59,7 @@ export const books: Book[] = [
     genre: 'Non-fiction',
     goodreads:
       'https://www.goodreads.com/book/show/197005113-range-by-david-epstein-war-how-conflict-shaped-us-by-professor-margaret',
-    cover: 'https://covers.openlibrary.org/b/id/8782615-L.jpg',
+    cover: '/covers/46.jpg',
   },
   {
     number: 45,
@@ -70,7 +71,7 @@ export const books: Book[] = [
     language: 'Chinese',
     genre: 'Novel',
     goodreads: 'https://www.goodreads.com/en/book/show/20518872-the-three-body-problem',
-    cover: 'https://covers.openlibrary.org/b/id/8478888-L.jpg',
+    cover: '/covers/45.jpg',
   },
   {
     number: 44,
@@ -82,7 +83,7 @@ export const books: Book[] = [
     language: 'English',
     genre: 'Novel',
     goodreads: 'https://www.goodreads.com/book/show/166997.Stoner',
-    cover: 'https://covers.openlibrary.org/b/id/8310729-L.jpg',
+    cover: '/covers/44.jpg',
   },
   {
     number: 43,
@@ -95,7 +96,7 @@ export const books: Book[] = [
     language: 'English',
     genre: 'Novel',
     goodreads: 'https://www.goodreads.com/book/show/17333319-burial-rites',
-    cover: 'https://covers.openlibrary.org/b/id/9030751-L.jpg',
+    cover: '/covers/43.jpg',
   },
   {
     number: 42,
@@ -109,7 +110,7 @@ export const books: Book[] = [
     language: 'Spanish',
     genre: 'Short stories',
     goodreads: 'https://www.goodreads.com/en/book/show/210678433-reservoir-bitches',
-    cover: 'https://covers.openlibrary.org/b/id/14747980-L.jpg',
+    cover: '/covers/42.jpg',
   },
   {
     number: 41,
@@ -121,7 +122,7 @@ export const books: Book[] = [
     language: 'Bulgarian',
     genre: 'Novel',
     goodreads: 'https://www.goodreads.com/en/book/show/58999261-time-shelter',
-    cover: 'https://covers.openlibrary.org/b/id/13125096-L.jpg',
+    cover: '/covers/41.jpg',
   },
   {
     number: 40,
@@ -133,7 +134,7 @@ export const books: Book[] = [
     language: 'Greek',
     genre: 'Non-fiction',
     goodreads: 'https://www.goodreads.com/book/show/236871772',
-    cover: 'https://cdn.politeianet.gr/data/images/Product/383893/1/el/7289-0203.jpg?d=20250628113058',
+    cover: '/covers/40.jpg',
   },
   {
     number: 39,
@@ -145,7 +146,7 @@ export const books: Book[] = [
     language: 'English',
     genre: 'Novel',
     goodreads: 'https://www.goodreads.com/book/show/6692041-mornings-in-jenin',
-    cover: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1767631844i/6692041.jpg',
+    cover: '/covers/39.jpg',
   },
   {
     number: 38,
@@ -159,15 +160,14 @@ export const books: Book[] = [
     language: 'Korean',
     genre: 'Novel',
     goodreads: 'https://www.goodreads.com/book/show/25489025-the-vegetarian',
-    cover: 'https://covers.openlibrary.org/b/isbn/9781101906118-L.jpg',
+    cover: '/covers/38.jpg',
   },
 
   // ── Books 1–37: the club's first five years ──────────────────────────────────
-  // Recovered from the club's own list. No read-dates or meeting dates survive
-  // for these, so they show by number alone and gather under "Earlier" on the
-  // shelf. country / language / genre are inferred from each author and are worth
-  // a check. Covers are Open Library (English editions) where one matched; a few
-  // keep a drawn spine. Goodreads links can be added later.
+  // Recovered from the club's own list. Mostly no read-dates survive, so these
+  // show by number alone and gather under "Earlier" on the shelf. country /
+  // language / genre are inferred from each author and are worth a check.
+  // Goodreads links can be added later.
   {
     number: 37,
     titleEn: 'Lessons in Chemistry',
@@ -177,7 +177,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Novel',
-    cover: 'https://covers.openlibrary.org/b/id/15179919-L.jpg',
+    cover: '/covers/37.jpg',
   },
   {
     number: 36,
@@ -187,7 +187,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Novel',
-    cover: 'https://covers.openlibrary.org/b/id/14920821-L.jpg',
+    cover: '/covers/36.jpg',
   },
   {
     number: 35,
@@ -196,7 +196,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Novel',
-    cover: 'https://covers.openlibrary.org/b/id/14369354-L.jpg',
+    cover: '/covers/35.jpg',
   },
   {
     number: 34,
@@ -205,7 +205,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Non-fiction',
-    cover: 'https://covers.openlibrary.org/b/id/11445546-L.jpg',
+    cover: '/covers/34.jpg',
   },
   {
     number: 33,
@@ -214,7 +214,7 @@ export const books: Book[] = [
     country: 'Ireland',
     language: 'English',
     genre: 'Novel',
-    cover: 'https://covers.openlibrary.org/b/id/15233320-L.jpg',
+    cover: '/covers/33.jpg',
   },
   {
     number: 32,
@@ -223,7 +223,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Short stories',
-    cover: 'https://covers.openlibrary.org/b/id/8793546-L.jpg',
+    cover: '/covers/32.jpg',
   },
   {
     number: 31,
@@ -232,7 +232,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Novel',
-    cover: 'https://covers.openlibrary.org/b/id/13340978-L.jpg',
+    cover: '/covers/31.jpg',
   },
   {
     number: 30,
@@ -241,7 +241,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Non-fiction',
-    cover: 'https://covers.openlibrary.org/b/id/15088364-L.jpg',
+    cover: '/covers/30.jpg',
   },
   {
     number: 29,
@@ -250,7 +250,7 @@ export const books: Book[] = [
     country: 'Ireland',
     language: 'English',
     genre: 'Novel',
-    cover: 'https://covers.openlibrary.org/b/id/15096821-L.jpg',
+    cover: '/covers/29.jpg',
   },
   {
     number: 28,
@@ -259,7 +259,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Novel',
-    cover: 'https://covers.openlibrary.org/b/id/13865676-L.jpg',
+    cover: '/covers/28.jpg',
   },
   {
     number: 27,
@@ -268,7 +268,7 @@ export const books: Book[] = [
     country: 'Argentina',
     language: 'Spanish',
     genre: 'Short stories',
-    cover: 'https://covers.openlibrary.org/b/isbn/9780451495112-L.jpg',
+    cover: '/covers/27.jpg',
   },
   {
     number: 26,
@@ -278,7 +278,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Short stories',
-    cover: 'https://covers.openlibrary.org/b/id/914850-L.jpg',
+    cover: '/covers/26.jpg',
   },
   {
     number: 25,
@@ -287,7 +287,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Novel',
-    cover: 'https://cdn.waterstones.com/bookjackets/large/9781/8049/9781804990971.jpg',
+    cover: '/covers/25.jpg',
   },
   {
     number: 24,
@@ -296,7 +296,7 @@ export const books: Book[] = [
     country: 'Ghana',
     language: 'English',
     genre: 'Novel',
-    cover: 'https://covers.openlibrary.org/b/id/14333333-L.jpg',
+    cover: '/covers/24.jpg',
   },
   {
     number: 23,
@@ -305,7 +305,7 @@ export const books: Book[] = [
     country: 'Japan',
     language: 'Japanese',
     genre: 'Novel',
-    cover: 'https://covers.openlibrary.org/b/id/13222635-L.jpg',
+    cover: '/covers/23.jpg',
   },
   {
     number: 22,
@@ -314,7 +314,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Non-fiction',
-    cover: 'https://covers.openlibrary.org/b/id/9860320-L.jpg',
+    cover: '/covers/22.jpg',
   },
   {
     number: 21,
@@ -323,7 +323,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Novel',
-    cover: 'https://covers.openlibrary.org/b/id/10555045-L.jpg',
+    cover: '/covers/21.jpg',
   },
   {
     number: 20,
@@ -333,7 +333,7 @@ export const books: Book[] = [
     country: 'Russia',
     language: 'Russian',
     genre: 'Novella',
-    cover: 'https://covers.openlibrary.org/b/id/11616112-L.jpg',
+    cover: '/covers/20.jpg',
   },
   {
     number: 19,
@@ -343,7 +343,7 @@ export const books: Book[] = [
     country: 'France',
     language: 'French',
     genre: 'Memoir',
-    cover: 'https://covers.openlibrary.org/b/isbn/9781609807870-L.jpg',
+    cover: '/covers/19.jpg',
   },
   {
     number: 18,
@@ -352,7 +352,7 @@ export const books: Book[] = [
     country: 'Sweden',
     language: 'Swedish',
     genre: 'Novel',
-    cover: 'https://covers.openlibrary.org/b/isbn/9781476738024-L.jpg',
+    cover: '/covers/18.jpg',
   },
   {
     number: 17,
@@ -361,7 +361,7 @@ export const books: Book[] = [
     country: 'Turkey',
     language: 'English',
     genre: 'Novel',
-    cover: 'https://covers.openlibrary.org/b/id/11570235-L.jpg',
+    cover: '/covers/17.jpg',
   },
   {
     number: 16,
@@ -370,7 +370,7 @@ export const books: Book[] = [
     country: 'South Korea',
     language: 'Korean',
     genre: 'Novel',
-    cover: 'https://covers.openlibrary.org/b/id/13179247-L.jpg',
+    cover: '/covers/16.jpg',
   },
   {
     number: 15,
@@ -379,7 +379,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Novel',
-    cover: 'https://covers.openlibrary.org/b/id/10517883-L.jpg',
+    cover: '/covers/15.jpg',
   },
   {
     number: 14,
@@ -388,7 +388,7 @@ export const books: Book[] = [
     country: 'Austria',
     language: 'German',
     genre: 'Novella',
-    cover: 'https://m.media-amazon.com/images/I/71VyErI8s8L._UF1000,1000_QL80_.jpg',
+    cover: '/covers/14.jpg',
   },
   {
     number: 13,
@@ -398,7 +398,7 @@ export const books: Book[] = [
     country: 'Greece',
     language: 'Greek',
     genre: 'Novel',
-    cover: 'https://covers.openlibrary.org/b/id/9692730-L.jpg',
+    cover: '/covers/13.jpg',
   },
   {
     number: 12,
@@ -407,7 +407,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Novel',
-    cover: 'https://covers.openlibrary.org/b/isbn/9780571224135-L.jpg',
+    cover: '/covers/12.jpg',
   },
   {
     number: 11,
@@ -416,7 +416,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Novel',
-    cover: 'https://covers.openlibrary.org/b/isbn/9780345391803-L.jpg',
+    cover: '/covers/11.jpg',
   },
   {
     number: 10,
@@ -426,7 +426,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Novel',
-    cover: 'https://covers.openlibrary.org/b/id/15169563-L.jpg',
+    cover: '/covers/10.jpg',
   },
   {
     number: 9,
@@ -435,7 +435,7 @@ export const books: Book[] = [
     country: 'Canada',
     language: 'English',
     genre: 'Novel',
-    cover: 'https://covers.openlibrary.org/b/id/15154656-L.jpg',
+    cover: '/covers/9.jpg',
   },
   {
     number: 8,
@@ -445,7 +445,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Non-fiction',
-    cover: 'https://covers.openlibrary.org/b/id/14839845-L.jpg',
+    cover: '/covers/8.jpg',
   },
   {
     number: 7,
@@ -455,7 +455,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Novel',
-    cover: 'https://covers.openlibrary.org/b/isbn/9780141187884-L.jpg',
+    cover: '/covers/7.jpg',
   },
   {
     number: 6,
@@ -465,7 +465,7 @@ export const books: Book[] = [
     country: 'Russia',
     language: 'Russian',
     genre: 'Play',
-    cover: 'https://covers.openlibrary.org/b/id/12583854-L.jpg',
+    cover: '/covers/6.jpg',
   },
   {
     number: 5,
@@ -475,7 +475,7 @@ export const books: Book[] = [
     country: 'United States',
     language: 'English',
     genre: 'Non-fiction',
-    cover: 'https://covers.openlibrary.org/b/isbn/9780374532505-L.jpg',
+    cover: '/covers/5.jpg',
   },
   {
     number: 4,
@@ -485,7 +485,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Non-fiction',
-    cover: 'https://covers.openlibrary.org/b/id/14858513-L.jpg',
+    cover: '/covers/4.jpg',
   },
   {
     number: 3,
@@ -495,8 +495,7 @@ export const books: Book[] = [
     country: 'France',
     language: 'French',
     genre: 'Novel',
-    cover:
-      'https://a.scdn.gr/images/sku_main_images/000389/389729/20200219110303_i_leschi_ton_atherapeyta_aisiodoxon.jpeg',
+    cover: '/covers/3.jpg',
   },
   {
     number: 2,
@@ -505,7 +504,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Non-fiction',
-    cover: 'https://covers.openlibrary.org/b/id/15175521-L.jpg',
+    cover: '/covers/2.jpg',
   },
   {
     number: 1,
@@ -514,7 +513,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Novel',
-    cover: 'https://covers.openlibrary.org/b/id/15008590-L.jpg',
+    cover: '/covers/1.jpg',
   },
 ]
 
@@ -531,7 +530,7 @@ export const currentlyReading: { book: Book; progress?: string } | null = {
     language: 'English',
     genre: 'Memoir',
     goodreads: 'https://www.goodreads.com/book/show/29780253-born-a-crime',
-    cover: 'https://covers.openlibrary.org/b/id/8294078-L.jpg',
+    cover: '/covers/47.jpg',
   },
   progress: undefined,
 }
