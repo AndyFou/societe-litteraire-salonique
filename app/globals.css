@@ -17,8 +17,22 @@
   --accent-soft: #d98b7f;
 }
 
+/* Dark palette. The nav toggle writes `data-theme` on <html>; an explicit
+   choice always wins, and the system preference applies only when no choice
+   has been made. Both selectors carry the same values. */
+:root[data-theme='dark'] {
+  --paper: #131211;
+  --paper-deep: #1b1917;
+  --ink: #f2eee9;
+  --ink-soft: #b0a9a2;
+  --ink-faint: #7d766f;
+  --rule: #2e2a27;
+  --accent: #dd9084;
+  --accent-soft: #c97a6d;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --paper: #131211;
     --paper-deep: #1b1917;
     --ink: #f2eee9;
