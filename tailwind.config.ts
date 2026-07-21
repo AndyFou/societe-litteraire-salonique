@@ -20,6 +20,7 @@ const config: Config = {
         rule: "var(--rule)",
         accent: "var(--accent)",
         "accent-soft": "var(--accent-soft)",
+        brand: "var(--brand)",
       },
     },
   },

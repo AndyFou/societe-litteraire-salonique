@@ -17,7 +17,7 @@ export default function Home() {
           // eslint-disable-next-line @next/next/no-img-element
           <img src={club.seal} alt="" className="mb-10 h-40 w-40 object-contain" />
         )}
-        <h1 className="font-serif text-4xl leading-tight text-balance sm:text-6xl">
+        <h1 className="font-serif text-4xl leading-tight text-balance text-brand sm:text-6xl">
           {club.name}
         </h1>
         <p className="mt-4 max-w-xl font-serif text-xl italic leading-snug text-ink-soft">
@@ -38,15 +38,6 @@ export default function Home() {
           )}
         </section>
       )}
-
-      <section>
-        <p className="eyebrow mb-5">The club</p>
-        <div className="max-w-2xl space-y-4 text-[1.125rem] leading-relaxed text-ink-soft">
-          {club.history.map((para, i) => (
-            <p key={i}>{para}</p>
-          ))}
-        </div>
-      </section>
 
       <section>
         <div className="mb-6 flex items-baseline justify-between">
@@ -76,13 +67,6 @@ export default function Home() {
               </li>
             ))}
           </ul>
-        </section>
-      )}
-
-      {club.ritual && (
-        <section className="max-w-2xl">
-          <p className="eyebrow mb-4">How we choose</p>
-          <p className="text-[1.125rem] leading-relaxed text-ink-soft">{club.ritual}</p>
         </section>
       )}
     </div>

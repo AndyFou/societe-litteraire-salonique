@@ -132,7 +132,7 @@ export const books: Book[] = [
     language: 'Greek',
     genre: 'Non-fiction',
     goodreads: 'https://www.goodreads.com/book/show/236871772',
-    // No Open Library cover for this one — it keeps its typographic spine.
+    cover: 'https://cdn.politeianet.gr/data/images/Product/383893/1/el/7289-0203.jpg?d=20250628113058',
   },
   {
     number: 39,

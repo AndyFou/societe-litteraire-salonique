@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 }
 
 const links = [
-  { href: '/', label: 'The Club' },
+  { href: '/club', label: 'The Club' },
   { href: '/shelf', label: 'The Shelf' },
   { href: '/stats', label: 'By the Numbers' },
 ]
@@ -48,7 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={club.seal} alt="" className="h-11 w-11 object-contain" />
               ) : (
-                <span className="font-serif text-2xl tracking-[0.14em]">{club.monogram}</span>
+                <span className="font-serif text-2xl tracking-[0.14em] text-brand">{club.monogram}</span>
               )}
             </Link>
             <nav className="flex items-center gap-6 text-sm text-ink-soft">
