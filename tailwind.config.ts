@@ -19,6 +19,7 @@ const config: Config = {
         "ink-faint": "var(--ink-faint)",
         rule: "var(--rule)",
         accent: "var(--accent)",
+        "accent-soft": "var(--accent-soft)",
       },
     },
   },

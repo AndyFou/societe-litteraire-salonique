@@ -31,7 +31,7 @@ function Ranking({ title, rows }: { title: string; rows: [string, number][] }) {
               {name}
             </span>
             <span
-              className="h-3 bg-accent opacity-80"
+              className="h-2 bg-accent-soft"
               style={{ width: `${Math.max((count / max) * 100, 4)}%` }}
             />
             <span className="text-xs tabular-nums text-ink-faint">{count}</span>
@@ -78,8 +78,9 @@ export default function StatsPage() {
           {s.perYear.map(({ year, count }) => (
             <div key={year} className="flex flex-1 flex-col items-center gap-2">
               <span className="text-xs tabular-nums text-ink-faint">{count}</span>
+              {/* Capped so a short club history doesn't render as wide slabs. */}
               <div
-                className="w-full bg-accent opacity-80"
+                className="w-full max-w-[64px] bg-accent-soft"
                 style={{ height: `${Math.max((count / tallestYear) * 120, 4)}px` }}
               />
               <span className="text-xs text-ink-soft">{year}</span>

@@ -4,7 +4,12 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const club = {
-  name: 'Société Littéraire du Salonique',
+  // The seal, shown large on the homepage. Save the logo to `public/` and put
+  // its path here — e.g. '/logo.png'. Leave it null and the homepage simply
+  // opens on the title instead.
+  seal: null as string | null,
+
+  name: 'Société Littéraire de Salonique',
   shortName: 'La Société',
   tagline: 'A reading club of Thessaloniki, meeting from wherever we happen to be.',
   foundedYear: 2020,

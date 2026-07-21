@@ -2,25 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Palette taken from the club seal: a single dusty rose on white.
+   `accent` is the text-safe version (passes contrast at small sizes);
+   `accent-soft` is the seal's own rose, used only for bars and rules
+   where contrast doesn't matter. */
 :root {
-  --paper: #faf7f2;
-  --paper-deep: #f2ece2;
-  --ink: #1c1a17;
-  --ink-soft: #57514a;
-  --ink-faint: #918a80;
-  --rule: #ddd5c8;
-  --accent: #8c2f2b;
+  --paper: #ffffff;
+  --paper-deep: #f8f5f3;
+  --ink: #1a1817;
+  --ink-soft: #55504c;
+  --ink-faint: #8f8983;
+  --rule: #e8e2dd;
+  --accent: #b0604f;
+  --accent-soft: #d98b7f;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #14130f;
-    --paper-deep: #1c1a16;
-    --ink: #f0ebe2;
-    --ink-soft: #b3aa9d;
-    --ink-faint: #7c746a;
-    --rule: #322e28;
-    --accent: #d4726b;
+    --paper: #131211;
+    --paper-deep: #1b1917;
+    --ink: #f2eee9;
+    --ink-soft: #b0a9a2;
+    --ink-faint: #7d766f;
+    --rule: #2e2a27;
+    --accent: #dd9084;
+    --accent-soft: #c97a6d;
   }
 }
 

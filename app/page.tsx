@@ -9,7 +9,11 @@ export default function Home() {
 
   return (
     <div className="space-y-20">
-      <section>
+      <section className="flex flex-col items-center text-center">
+        {club.seal && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={club.seal} alt="" className="mb-10 h-40 w-40 object-contain" />
+        )}
         <h1 className="font-serif text-4xl leading-tight text-balance sm:text-6xl">
           {club.name}
         </h1>
