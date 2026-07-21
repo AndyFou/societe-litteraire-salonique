@@ -172,6 +172,8 @@ export const books: Book[] = [
     number: 37,
     titleEn: 'Lessons in Chemistry',
     author: 'Bonnie Garmus',
+    readOn: '2025-07',
+    metOn: '2025-07-19',
     country: 'United States',
     language: 'English',
     genre: 'Novel',
@@ -181,6 +183,7 @@ export const books: Book[] = [
     number: 36,
     titleEn: 'The Left Hand of Darkness',
     author: 'Ursula K. Le Guin',
+    readOn: '2025', // year known, month not — shows and groups as "2025"
     country: 'United States',
     language: 'English',
     genre: 'Novel',
@@ -284,7 +287,7 @@ export const books: Book[] = [
     country: 'United Kingdom',
     language: 'English',
     genre: 'Novel',
-    // No Open Library cover matched — keeps a drawn spine.
+    cover: 'https://cdn.waterstones.com/bookjackets/large/9781/8049/9781804990971.jpg',
   },
   {
     number: 24,
@@ -385,7 +388,7 @@ export const books: Book[] = [
     country: 'Austria',
     language: 'German',
     genre: 'Novella',
-    // No Open Library cover matched — keeps a drawn spine.
+    cover: 'https://m.media-amazon.com/images/I/71VyErI8s8L._UF1000,1000_QL80_.jpg',
   },
   {
     number: 13,
@@ -486,13 +489,14 @@ export const books: Book[] = [
   },
   {
     number: 3,
-    titleEn: "The Incurable Optimists' Club",
+    titleEn: "The Incorrigible Optimists' Club",
     titleGr: 'Η Λέσχη των Αθεράπευτα Αισιόδοξων',
     author: 'Jean-Michel Guenassia',
     country: 'France',
     language: 'French',
     genre: 'Novel',
-    // No Open Library cover matched — keeps a drawn spine.
+    cover:
+      'https://a.scdn.gr/images/sku_main_images/000389/389729/20200219110303_i_leschi_ton_atherapeyta_aisiodoxon.jpeg',
   },
   {
     number: 2,
