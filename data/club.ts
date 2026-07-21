@@ -15,13 +15,15 @@ export const club = {
   foundedYear: 2020,
   city: 'Thessaloniki',
 
-  // The history section on the homepage. Each string is one paragraph.
+  // ⚠️ DRAFT — written to fit the reading record, not from your account of it.
+  // Rewrite freely. Each string is one paragraph.
   history: [
-    `We began in ${2020} around a table in Thessaloniki, with the modest ambition of finishing one book a month and the immodest one of having something to argue about while doing it.`,
-    `Six years on, the table is gone and the arguments have not. We are scattered now — different cities, occasionally different continents — so the club lives on a video call, one evening a month, cameras optional and opinions mandatory.`,
-    `We read slowly and widely: Greek writers we grew up half-avoiding, translations we would never have picked alone, the occasional doorstop that takes two meetings. There is no reading list beyond the next book, and no rule except that whoever chooses has to defend the choice.`,
+    `We began in 2020 in Thessaloniki, with the modest ambition of finishing a book together and the immodest one of having something to argue about while doing it. Forty-seven books later, we are still counting them in order.`,
+    `The club is scattered now — different cities, occasionally different continents — so it lives on a video call, one evening every month or two, cameras optional and opinions mandatory. Once in a while we manage to be in the same room, and it is always worth the trouble.`,
+    `We read widely and without a plan: Korean and Bulgarian and Mexican novels, Greek popular history, the occasional doorstop that takes two months. There is no reading list beyond the next book.`,
   ],
 
   // How books get picked. Set to null to hide this section.
-  ritual: `Each month one member chooses, and the turn rotates. The only constraint is that you cannot pick an author the club has already read — which, six years in, is starting to require some effort.`,
+  // ⚠️ DRAFT — replace with how the club actually chooses.
+  ritual: null as string | null,
 }

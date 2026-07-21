@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { club } from '@/data/club'
 import { currentlyReading, upNext } from '@/data/books'
-import { shelf, formatMeeting, bookId } from '@/lib/books'
+import { shelf, bookId } from '@/lib/books'
 import { BookCard } from '@/components/BookCard'
 
 export default function Home() {
@@ -28,11 +28,9 @@ export default function Home() {
           <div className="max-w-md">
             <BookCard book={currentlyReading.book} />
           </div>
-          <p className="mt-5 text-sm text-ink-soft">
-            Next meeting{' '}
-            <span className="text-ink">{formatMeeting(currentlyReading.meetingOn)}</span>
-            {currentlyReading.progress && ` — ${currentlyReading.progress}`}
-          </p>
+          {currentlyReading.progress && (
+            <p className="mt-5 text-sm text-ink-soft">{currentlyReading.progress}</p>
+          )}
         </section>
       )}
 
@@ -49,7 +47,7 @@ export default function Home() {
         <div className="mb-6 flex items-baseline justify-between">
           <p className="eyebrow">Recently read</p>
           <Link href="/shelf" className="text-sm text-ink-soft transition-colors hover:text-accent">
-            All {shelf.length} books →
+            The whole shelf →
           </Link>
         </div>
         <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
@@ -70,7 +68,6 @@ export default function Home() {
               >
                 <span className="font-serif text-lg">{b.title}</span>
                 <span className="text-sm text-ink-soft">{b.author}</span>
-                {b.country && <span className="text-xs text-ink-faint">{b.country}</span>}
               </li>
             ))}
           </ul>

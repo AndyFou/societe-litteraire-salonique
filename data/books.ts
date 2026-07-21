@@ -1,23 +1,37 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// THE SHELF — every book the club has read.
+// THE SHELF
 //
-// To add a book, copy an entry below and edit it. Only `title`, `author` and
-// `readOn` are required; everything else is optional and the site adapts if a
-// field is missing.
+// Books are numbered as the club numbers them. The record here starts at #38;
+// everything before that was read before this log began, and the site works out
+// the club's true total from the highest number rather than counting rows.
 //
-//   readOn   "YYYY-MM" — the month you discussed it. Drives sorting and stats.
-//   country  Author's country. Used for the "around the world" stat.
-//   language Original language of the book, not the one you read it in.
-//   cover    Any image URL. Leave it out and a typographic cover is drawn instead.
-//   pickedBy Whoever chose it that month.
-//   note     One line of club verdict. Keep it short — it shows on the card.
+//   number     The club's own count — 38ο Βιβλίο, 39ο Βιβλίο, …
+//   titleEn /  Give whichever exist. At least one is required. The English title
+//   titleGr    leads on the card when both are present, with the Greek beneath;
+//              Greek-language books show the Greek title alone.
+//   readOn     "YYYY-MM" — the month the book was read.
+//   readThrough Optional second month, for books that spanned two.
+//   metOn      "YYYY-MM-DD" — the discussion date.
+//   inPerson   Meetings are remote by default; set true for the rare live one.
+//   goodreads  Link on the title.
+//   cover      Any image URL; omit and a typographic cover is drawn instead.
+//   pages      Omit rather than guess — the page-count stat hides itself when
+//              nothing is recorded, but a wrong number silently corrupts it.
 // ─────────────────────────────────────────────────────────────────────────────
 
-export type Book = {
-  title: string
+/** At least one title is required; either language satisfies it. */
+type Titles =
+  | { titleEn: string; titleGr?: string }
+  | { titleEn?: string; titleGr: string }
+
+export type Book = Titles & {
+  number: number
   author: string
   readOn: string
-  year?: number
+  readThrough?: string
+  metOn?: string
+  inPerson?: boolean
+  goodreads?: string
   country?: string
   language?: string
   genre?: string
@@ -27,99 +41,134 @@ export type Book = {
   note?: string
 }
 
-// ⚠️ PLACEHOLDER DATA — replace all of this with the club's real reading list.
+// ⚠️ country / language / genre were filled in from general knowledge about each
+// author, not from your notes — worth a skim. Everything else comes from the list
+// you provided.
 export const books: Book[] = [
   {
-    title: 'Το Τρίτο Στεφάνι',
-    author: 'Κώστας Ταχτσής',
+    number: 46,
+    titleEn: 'Range',
+    author: 'David Epstein',
+    readOn: '2026-04',
+    readThrough: '2026-05',
+    metOn: '2026-06-04',
+    country: 'United States',
+    language: 'English',
+    genre: 'Non-fiction',
+    goodreads:
+      'https://www.goodreads.com/book/show/197005113-range-by-david-epstein-war-how-conflict-shaped-us-by-professor-margaret',
+  },
+  {
+    number: 45,
+    titleEn: 'The Three-Body Problem',
+    author: 'Cixin Liu',
+    readOn: '2026-03',
+    metOn: '2026-04-08',
+    country: 'China',
+    language: 'Chinese',
+    genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/en/book/show/20518872-the-three-body-problem',
+  },
+  {
+    number: 44,
+    titleEn: 'Stoner',
+    author: 'John Williams',
+    readOn: '2026-02',
+    metOn: '2026-03-01',
+    country: 'United States',
+    language: 'English',
+    genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/166997.Stoner',
+  },
+  {
+    number: 43,
+    titleEn: 'Burial Rites',
+    titleGr: 'Έθιμα Ταφής',
+    author: 'Hannah Kent',
+    readOn: '2026-01',
+    metOn: '2026-01-29',
+    country: 'Australia',
+    language: 'English',
+    genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/book/show/17333319-burial-rites',
+  },
+  {
+    number: 42,
+    titleEn: 'Reservoir Bitches',
+    titleGr: 'Αδέσποτες σκύλες',
+    author: 'Dahlia de la Cerda',
+    readOn: '2025-12',
+    metOn: '2025-12-18',
+    inPerson: true,
+    country: 'Mexico',
+    language: 'Spanish',
+    genre: 'Short stories',
+    goodreads: 'https://www.goodreads.com/en/book/show/210678433-reservoir-bitches',
+  },
+  {
+    number: 41,
+    titleEn: 'Time Shelter',
+    author: 'Georgi Gospodinov',
     readOn: '2025-11',
-    year: 1962,
+    metOn: '2025-12-02',
+    country: 'Bulgaria',
+    language: 'Bulgarian',
+    genre: 'Novel',
+    goodreads: 'https://www.goodreads.com/en/book/show/58999261-time-shelter',
+  },
+  {
+    number: 40,
+    titleGr: "Ένας Αιγύπτιος, ένας Βαβυλώνιος κι ένας Βίκινγκ μπαίνουν σ' ένα μπαρ",
+    author: 'Θεόδωρος Παπακώστας',
+    readOn: '2025-10',
+    metOn: '2025-11-03',
     country: 'Greece',
     language: 'Greek',
-    genre: 'Novel',
-    pages: 320,
-    pickedBy: 'Antigoni',
-    note: 'Everyone arrived furious at a different character.',
+    genre: 'Non-fiction',
+    goodreads: 'https://www.goodreads.com/book/show/236871772',
   },
   {
-    title: 'Austerlitz',
-    author: 'W. G. Sebald',
+    number: 39,
+    titleEn: 'Mornings in Jenin',
+    author: 'Susan Abulhawa',
     readOn: '2025-09',
-    year: 2001,
-    country: 'Germany',
-    language: 'German',
+    metOn: '2025-09-30',
+    country: 'Palestine',
+    language: 'English',
     genre: 'Novel',
-    pages: 416,
-    note: 'Two hours on whether the photographs are load-bearing.',
+    goodreads: 'https://www.goodreads.com/book/show/6692041-mornings-in-jenin',
   },
   {
-    title: 'The Vegetarian',
+    number: 38,
+    titleEn: 'The Vegetarian',
+    titleGr: 'Η Χορτοφάγος',
     author: 'Han Kang',
-    readOn: '2025-06',
-    year: 2007,
+    readOn: '2025-07',
+    readThrough: '2025-08',
+    metOn: '2025-08-19',
     country: 'South Korea',
     language: 'Korean',
     genre: 'Novel',
-    pages: 188,
-    pickedBy: 'Maria',
-  },
-  {
-    title: 'Ζορμπάς',
-    author: 'Νίκος Καζαντζάκης',
-    readOn: '2025-03',
-    year: 1946,
-    country: 'Greece',
-    language: 'Greek',
-    genre: 'Novel',
-    pages: 352,
-  },
-  {
-    title: 'Speak, Memory',
-    author: 'Vladimir Nabokov',
-    readOn: '2024-12',
-    year: 1951,
-    country: 'Russia',
-    language: 'English',
-    genre: 'Memoir',
-    pages: 268,
-    note: 'The butterfly chapter divided us permanently.',
-  },
-  {
-    title: 'Cien años de soledad',
-    author: 'Gabriel García Márquez',
-    readOn: '2024-10',
-    year: 1967,
-    country: 'Colombia',
-    language: 'Spanish',
-    genre: 'Novel',
-    pages: 417,
+    goodreads: 'https://www.goodreads.com/book/show/25489025-the-vegetarian',
   },
 ]
 
 // What the club is reading right now. Set to `null` between books.
-export const currentlyReading: {
-  book: Book
-  meetingOn: string // ISO date — "2026-08-14T20:00:00+03:00"
-  progress?: string // optional nudge, e.g. "through part two"
-} | null = {
+// When you finish it, move the book into the array above and set its `metOn`.
+export const currentlyReading: { book: Book; progress?: string } | null = {
   book: {
-    title: 'Η Δασκάλα με τα Χρυσά Μάτια',
-    author: 'Στράτης Μυριβήλης',
-    readOn: '2026-08',
-    year: 1933,
-    country: 'Greece',
-    language: 'Greek',
-    genre: 'Novel',
-    pages: 384,
-    pickedBy: 'Eleni',
+    number: 47,
+    titleEn: 'Born a Crime',
+    author: 'Trevor Noah',
+    readOn: '2026-06',
+    readThrough: '2026-07',
+    country: 'South Africa',
+    language: 'English',
+    genre: 'Memoir',
+    goodreads: 'https://www.goodreads.com/book/show/29780253-born-a-crime',
   },
-  meetingOn: '2026-08-14T20:00:00+03:00',
-  progress: 'aim for part two by the meeting',
+  progress: undefined,
 }
 
-// Books under consideration. Order is meaningless — it's a shortlist, not a queue.
-export const upNext: Pick<Book, 'title' | 'author' | 'country'>[] = [
-  { title: 'Στου Χατζηφράγκου', author: 'Κοσμάς Πολίτης', country: 'Greece' },
-  { title: 'The Emigrants', author: 'W. G. Sebald', country: 'Germany' },
-  { title: 'Kitchen', author: 'Banana Yoshimoto', country: 'Japan' },
-]
+// Books under consideration. Leave the array empty to hide the section.
+export const upNext: { title: string; author: string }[] = []

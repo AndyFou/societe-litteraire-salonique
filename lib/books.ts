@@ -1,37 +1,91 @@
-import { books, type Book } from '@/data/books'
+import { books, currentlyReading, type Book } from '@/data/books'
 
-/** Stable id for a book — used for React keys and anchors. */
+/** The title that leads on a card: English when we have it, Greek otherwise. */
+export function primaryTitle(b: Book) {
+  return b.titleEn ?? b.titleGr!
+}
+
+/** The other title, shown beneath — undefined when the book has only one. */
+export function altTitle(b: Book) {
+  return b.titleEn ? b.titleGr : undefined
+}
+
 export function bookId(b: Book) {
-  return `${b.readOn}-${b.title}`.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-')
+  return String(b.number)
 }
 
-/** "2025-11" → "November 2025". Falls back to the raw string if unparseable. */
-export function formatReadOn(readOn: string) {
-  const [y, m] = readOn.split('-').map(Number)
-  if (!y || !m) return readOn
-  const d = new Date(Date.UTC(y, m - 1, 1))
-  return d.toLocaleDateString('en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' })
+function monthName(ym: string) {
+  const [y, m] = ym.split('-').map(Number)
+  if (!y || !m) return null
+  return {
+    month: new Date(Date.UTC(y, m - 1, 1)).toLocaleDateString('en-GB', {
+      month: 'long',
+      timeZone: 'UTC',
+    }),
+    year: String(y),
+  }
 }
 
-export function formatMeeting(iso: string) {
-  const d = new Date(iso)
-  if (Number.isNaN(d.getTime())) return iso
+/**
+ * "2025-07" → "July 2025"
+ * "2025-07" + "2025-08" → "July–August 2025"   (year stated once)
+ * "2025-12" + "2026-01" → "December 2025–January 2026"
+ */
+export function formatReadOn(readOn: string, readThrough?: string) {
+  const from = monthName(readOn)
+  if (!from) return readOn
+  if (!readThrough) return `${from.month} ${from.year}`
+
+  const to = monthName(readThrough)
+  if (!to) return `${from.month} ${from.year}`
+
+  return from.year === to.year
+    ? `${from.month}–${to.month} ${from.year}`
+    : `${from.month} ${from.year}–${to.month} ${to.year}`
+}
+
+/** "2025-08-19" → "19 August 2025" */
+export function formatMeeting(date: string) {
+  const d = new Date(`${date}T00:00:00Z`)
+  if (Number.isNaN(d.getTime())) return date
   return d.toLocaleDateString('en-GB', {
-    weekday: 'long',
     day: 'numeric',
     month: 'long',
     year: 'numeric',
+    timeZone: 'UTC',
   })
 }
 
-/** Newest first. */
-export const shelf = [...books].sort((a, b) => b.readOn.localeCompare(a.readOn))
+/** Newest first. Book numbers are the club's own count, so they sort reliably. */
+export const shelf = [...books].sort((a, b) => b.number - a.number)
 
-export const years = Array.from(new Set(shelf.map((b) => b.readOn.slice(0, 4)))).sort().reverse()
+export const years = Array.from(new Set(shelf.map((b) => b.readOn.slice(0, 4))))
+  .sort()
+  .reverse()
 export const genres = Array.from(new Set(shelf.map((b) => b.genre).filter(Boolean) as string[])).sort()
 export const countries = Array.from(
   new Set(shelf.map((b) => b.country).filter(Boolean) as string[]),
 ).sort()
+
+/**
+ * The club counts its books from #1; this log starts partway in. The true total
+ * is the highest number we know of — including the book in progress — not the
+ * number of rows on the shelf.
+ */
+export function getCounts() {
+  const numbers = [...shelf.map((b) => b.number), currentlyReading?.book.number ?? 0]
+  const clubTotal = Math.max(...numbers, 0)
+  const recorded = shelf.length
+  const firstRecorded = Math.min(...shelf.map((b) => b.number))
+
+  return {
+    clubTotal,
+    recorded,
+    firstRecorded,
+    /** Books read before this log began. */
+    beforeRecord: firstRecorded - 1,
+  }
+}
 
 // ── Stats ────────────────────────────────────────────────────────────────────
 
@@ -46,30 +100,25 @@ function tally<T extends string>(values: (T | undefined)[]) {
 
 export function getStats() {
   const withPages = shelf.filter((b) => b.pages)
-  const withYear = shelf.filter((b) => b.year)
   const totalPages = withPages.reduce((sum, b) => sum + (b.pages ?? 0), 0)
 
   const perYear = years
     .map((y) => ({ year: y, count: shelf.filter((b) => b.readOn.startsWith(y)).length }))
     .sort((a, b) => a.year.localeCompare(b.year))
 
-  const sortedByYear = [...withYear].sort((a, b) => (a.year ?? 0) - (b.year ?? 0))
-  const sortedByPages = [...withPages].sort((a, b) => (a.pages ?? 0) - (b.pages ?? 0))
+  const withPageCounts = [...withPages].sort((a, b) => (a.pages ?? 0) - (b.pages ?? 0))
 
   return {
-    total: shelf.length,
+    ...getCounts(),
     totalPages,
-    // Only meaningful if we know the length of most books.
     pagesKnown: withPages.length,
-    avgPages: withPages.length ? Math.round(totalPages / withPages.length) : null,
     perYear,
     authors: tally(shelf.map((b) => b.author)),
     countries: tally(shelf.map((b) => b.country)),
     languages: tally(shelf.map((b) => b.language)),
     genres: tally(shelf.map((b) => b.genre)),
-    oldest: sortedByYear[0] ?? null,
-    newest: sortedByYear[sortedByYear.length - 1] ?? null,
-    shortest: sortedByPages[0] ?? null,
-    longest: sortedByPages[sortedByPages.length - 1] ?? null,
+    inPerson: shelf.filter((b) => b.inPerson).length,
+    shortest: withPageCounts[0] ?? null,
+    longest: withPageCounts[withPageCounts.length - 1] ?? null,
   }
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Shelf } from '@/components/Shelf'
-import { shelf, years, genres, countries } from '@/lib/books'
+import { shelf, years, genres, countries, getCounts } from '@/lib/books'
 import { club } from '@/data/club'
 
 export const metadata: Metadata = {
@@ -9,11 +9,16 @@ export const metadata: Metadata = {
 }
 
 export default function ShelfPage() {
+  const { beforeRecord, firstRecorded } = getCounts()
+
   return (
     <div>
       <h1 className="font-serif text-4xl sm:text-5xl">The Shelf</h1>
       <p className="mt-3 max-w-xl font-serif text-lg italic text-ink-soft">
-        Everything we have read since {club.foundedYear}, in the order we read it.
+        {beforeRecord > 0
+          ? `Book №${firstRecorded} onwards. The first ${beforeRecord} were read before this
+             record began.`
+          : 'Everything we have read, in the order we read it.'}
       </p>
 
       <div className="mt-10">

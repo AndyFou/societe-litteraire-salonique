@@ -2,17 +2,16 @@
 
 import { useMemo, useState } from 'react'
 import type { Book } from '@/data/books'
-import { bookId } from '@/lib/books'
+import { bookId, primaryTitle } from '@/lib/books'
 import { BookCard } from './BookCard'
 
-type Sort = 'recent' | 'oldest' | 'title' | 'author' | 'longest'
+type Sort = 'recent' | 'oldest' | 'title' | 'author'
 
 const SORTS: { key: Sort; label: string }[] = [
   { key: 'recent', label: 'Recently read' },
   { key: 'oldest', label: 'First read' },
   { key: 'title', label: 'Title' },
   { key: 'author', label: 'Author' },
-  { key: 'longest', label: 'Longest' },
 ]
 
 /** A row of pill buttons; `null` is the "all" option. */
@@ -71,12 +70,12 @@ export function Shelf({
         (!country || b.country === country),
     )
 
+    // Book number is the club's own ordering, so it beats parsing dates.
     const by: Record<Sort, (a: Book, b: Book) => number> = {
-      recent: (a, b) => b.readOn.localeCompare(a.readOn),
-      oldest: (a, b) => a.readOn.localeCompare(b.readOn),
-      title: (a, b) => a.title.localeCompare(b.title),
-      author: (a, b) => a.author.localeCompare(b.author),
-      longest: (a, b) => (b.pages ?? 0) - (a.pages ?? 0),
+      recent: (a, b) => b.number - a.number,
+      oldest: (a, b) => a.number - b.number,
+      title: (a, b) => primaryTitle(a).localeCompare(primaryTitle(b), 'el'),
+      author: (a, b) => a.author.localeCompare(b.author, 'el'),
     }
 
     return [...filtered].sort(by[sort])
