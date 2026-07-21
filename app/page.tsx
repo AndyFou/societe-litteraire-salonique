@@ -3,9 +3,12 @@ import { club } from '@/data/club'
 import { currentlyReading, upNext } from '@/data/books'
 import { shelf, bookId } from '@/lib/books'
 import { BookCard } from '@/components/BookCard'
+import { CoverShelf } from '@/components/CoverShelf'
 
 export default function Home() {
   const recent = shelf.slice(0, 4)
+  // The current book first, then the whole shelf newest-first — a full row.
+  const onTheShelf = [...(currentlyReading ? [currentlyReading.book] : []), ...shelf]
 
   return (
     <div className="space-y-20">
@@ -21,6 +24,8 @@ export default function Home() {
           {club.tagline}
         </p>
       </section>
+
+      <CoverShelf books={onTheShelf} />
 
       {currentlyReading && (
         <section className="border-y border-rule py-8">

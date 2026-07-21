@@ -57,6 +57,7 @@ export const books: Book[] = [
     genre: 'Non-fiction',
     goodreads:
       'https://www.goodreads.com/book/show/197005113-range-by-david-epstein-war-how-conflict-shaped-us-by-professor-margaret',
+    cover: 'https://covers.openlibrary.org/b/id/8782615-L.jpg',
   },
   {
     number: 45,
@@ -68,6 +69,7 @@ export const books: Book[] = [
     language: 'Chinese',
     genre: 'Novel',
     goodreads: 'https://www.goodreads.com/en/book/show/20518872-the-three-body-problem',
+    cover: 'https://covers.openlibrary.org/b/id/8478888-L.jpg',
   },
   {
     number: 44,
@@ -79,6 +81,7 @@ export const books: Book[] = [
     language: 'English',
     genre: 'Novel',
     goodreads: 'https://www.goodreads.com/book/show/166997.Stoner',
+    cover: 'https://covers.openlibrary.org/b/id/8310729-L.jpg',
   },
   {
     number: 43,
@@ -91,6 +94,7 @@ export const books: Book[] = [
     language: 'English',
     genre: 'Novel',
     goodreads: 'https://www.goodreads.com/book/show/17333319-burial-rites',
+    cover: 'https://covers.openlibrary.org/b/id/9030751-L.jpg',
   },
   {
     number: 42,
@@ -104,6 +108,7 @@ export const books: Book[] = [
     language: 'Spanish',
     genre: 'Short stories',
     goodreads: 'https://www.goodreads.com/en/book/show/210678433-reservoir-bitches',
+    cover: 'https://covers.openlibrary.org/b/id/14747980-L.jpg',
   },
   {
     number: 41,
@@ -115,6 +120,7 @@ export const books: Book[] = [
     language: 'Bulgarian',
     genre: 'Novel',
     goodreads: 'https://www.goodreads.com/en/book/show/58999261-time-shelter',
+    cover: 'https://covers.openlibrary.org/b/id/13125096-L.jpg',
   },
   {
     number: 40,
@@ -126,6 +132,7 @@ export const books: Book[] = [
     language: 'Greek',
     genre: 'Non-fiction',
     goodreads: 'https://www.goodreads.com/book/show/236871772',
+    // No Open Library cover for this one — it keeps its typographic spine.
   },
   {
     number: 39,
@@ -137,6 +144,7 @@ export const books: Book[] = [
     language: 'English',
     genre: 'Novel',
     goodreads: 'https://www.goodreads.com/book/show/6692041-mornings-in-jenin',
+    cover: 'https://covers.openlibrary.org/b/id/6935052-L.jpg',
   },
   {
     number: 38,
@@ -150,6 +158,7 @@ export const books: Book[] = [
     language: 'Korean',
     genre: 'Novel',
     goodreads: 'https://www.goodreads.com/book/show/25489025-the-vegetarian',
+    cover: 'https://covers.openlibrary.org/b/isbn/9781101906118-L.jpg',
   },
 ]
 
@@ -166,6 +175,7 @@ export const currentlyReading: { book: Book; progress?: string } | null = {
     language: 'English',
     genre: 'Memoir',
     goodreads: 'https://www.goodreads.com/book/show/29780253-born-a-crime',
+    cover: 'https://covers.openlibrary.org/b/id/8294078-L.jpg',
   },
   progress: undefined,
 }

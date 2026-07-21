@@ -4,10 +4,14 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const club = {
-  // The seal, shown large on the homepage. Save the logo to `public/` and put
-  // its path here — e.g. '/logo.png'. Leave it null and the homepage simply
-  // opens on the title instead.
+  // The logo. Save the file to `public/` and put its path here — e.g. '/logo.png'.
+  // When set, it appears as the mark in the top-left of every page and large on
+  // the homepage. Until then, the `monogram` below stands in for it everywhere.
   seal: null as string | null,
+
+  // The lettering shown in the top-left when there's no logo yet — and a natural
+  // fallback even after, on very small screens.
+  monogram: 'SLS',
 
   name: 'Société Littéraire de Salonique',
   shortName: 'La Société',

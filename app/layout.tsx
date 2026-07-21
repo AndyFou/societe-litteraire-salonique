@@ -43,8 +43,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="font-sans antialiased">
         <header className="border-b border-rule">
           <div className="mx-auto flex max-w-5xl flex-col gap-3 px-6 py-5 sm:flex-row sm:items-baseline sm:justify-between">
-            <Link href="/" className="font-serif text-xl leading-none text-ink">
-              {club.shortName}
+            <Link href="/" aria-label={club.name} className="leading-none text-ink">
+              {club.seal ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={club.seal} alt="" className="h-11 w-11 object-contain" />
+              ) : (
+                <span className="font-serif text-2xl tracking-[0.14em]">{club.monogram}</span>
+              )}
             </Link>
             <nav className="flex items-center gap-6 text-sm text-ink-soft">
               {links.map((l) => (
