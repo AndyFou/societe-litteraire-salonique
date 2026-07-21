@@ -36,7 +36,7 @@ export default function Home() {
 
       <section>
         <p className="eyebrow mb-5">The club</p>
-        <div className="max-w-2xl space-y-4 text-[17px] leading-relaxed text-ink-soft">
+        <div className="max-w-2xl space-y-4 text-[1.125rem] leading-relaxed text-ink-soft">
           {club.history.map((para, i) => (
             <p key={i}>{para}</p>
           ))}
@@ -77,7 +77,7 @@ export default function Home() {
       {club.ritual && (
         <section className="max-w-2xl">
           <p className="eyebrow mb-4">How we choose</p>
-          <p className="text-[17px] leading-relaxed text-ink-soft">{club.ritual}</p>
+          <p className="text-[1.125rem] leading-relaxed text-ink-soft">{club.ritual}</p>
         </section>
       )}
     </div>

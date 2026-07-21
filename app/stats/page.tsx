@@ -75,7 +75,7 @@ export default function StatsPage() {
       </div>
 
       {s.beforeRecord > 0 && (
-        <p className="max-w-2xl text-[15px] leading-relaxed text-ink-soft">
+        <p className="max-w-2xl text-[0.9375rem] leading-relaxed text-ink-soft">
           The club has read {s.clubTotal} books. The {s.beforeRecord} that came before №
           {s.firstRecorded} predate this record, so every count below describes only the{' '}
           {s.recorded} listed on the shelf.
@@ -131,7 +131,7 @@ export default function StatsPage() {
 
       <section>
         <p className="eyebrow mb-4">How we meet</p>
-        <p className="max-w-2xl text-[15px] leading-relaxed text-ink-soft">
+        <p className="max-w-2xl text-[0.9375rem] leading-relaxed text-ink-soft">
           {s.inPerson === 0
             ? `All ${s.recorded} of these meetings happened over video.`
             : `${s.recorded - s.inPerson} of these ${s.recorded} meetings happened over video;

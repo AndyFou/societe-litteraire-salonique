@@ -44,6 +44,13 @@
   }
 }
 
+/* The whole type and spacing scale keys off this. Tailwind's utilities are
+   rem-based, so raising the root a little enlarges everything in proportion.
+   17px reads more comfortably than the 16px default for a text-heavy site. */
+html {
+  font-size: 17px;
+}
+
 body {
   background: var(--paper);
   color: var(--ink);
@@ -51,9 +58,10 @@ body {
 }
 
 @layer components {
-  /* Small-caps label that sits above a section heading. */
+  /* Small-caps label that sits above a section heading. Kept in rem so it
+     tracks the root size rather than staying pinned at a fixed pixel value. */
   .eyebrow {
-    @apply text-[11px] uppercase tracking-[0.18em] text-[var(--ink-faint)];
+    @apply text-[0.6875rem] uppercase tracking-[0.18em] text-[var(--ink-faint)];
   }
 }
 

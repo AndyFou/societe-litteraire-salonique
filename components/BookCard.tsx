@@ -51,7 +51,7 @@ export function BookCard({ book }: { book: Book }) {
           )}
         </h3>
 
-        {alt && <p className="font-serif text-[15px] italic leading-snug text-ink-faint">{alt}</p>}
+        {alt && <p className="font-serif text-[0.9375rem] italic leading-snug text-ink-faint">{alt}</p>}
 
         <p className="mt-0.5 text-sm text-ink-soft">{book.author}</p>
 
@@ -68,7 +68,7 @@ export function BookCard({ book }: { book: Book }) {
         )}
 
         {book.note && (
-          <p className="mt-2 font-serif text-[15px] italic leading-snug text-ink-soft">
+          <p className="mt-2 font-serif text-[0.9375rem] italic leading-snug text-ink-soft">
             {book.note}
           </p>
         )}
