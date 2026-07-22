@@ -282,7 +282,7 @@ export const books: Book[] = [
   },
   {
     number: 26,
-    titleEn: 'Elephant',
+    titleEn: 'Elephant and Other Stories',
     titleGr: 'Ελέφαντας',
     author: 'Raymond Carver',
     country: 'United States',
