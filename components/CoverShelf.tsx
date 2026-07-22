@@ -1,5 +1,6 @@
 import type { Book } from '@/data/books'
 import { primaryTitle } from '@/lib/books'
+import { asset } from '@/lib/asset'
 
 /** A slim drawn spine for a book with no cover image, sized to stand in the row. */
 function MiniSpine({ book }: { book: Book }) {
@@ -29,7 +30,7 @@ export function CoverShelf({ books }: { books: Book[] }) {
             {book.cover ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img
-                src={book.cover}
+                src={asset(book.cover)}
                 alt=""
                 loading="lazy"
                 className="h-[150px] w-auto border border-rule object-cover shadow-[0_3px_10px_rgba(0,0,0,0.14)]"

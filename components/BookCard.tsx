@@ -1,5 +1,6 @@
 import type { Book } from '@/data/books'
 import { primaryTitle, altTitle, formatReadOn, formatMeeting } from '@/lib/books'
+import { asset } from '@/lib/asset'
 
 /** Drawn in place of a cover image when a book has no `cover` URL. */
 function Spine({ book }: { book: Book }) {
@@ -29,7 +30,7 @@ export function BookCard({ book }: { book: Book }) {
         {book.cover ? (
           // Covers come from arbitrary hosts, so plain <img> avoids next/image config.
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={book.cover} alt="" className="h-full w-full border border-rule object-cover" />
+          <img src={asset(book.cover)} alt="" className="h-full w-full border border-rule object-cover" />
         ) : (
           <Spine book={book} />
         )}

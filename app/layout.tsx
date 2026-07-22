@@ -3,6 +3,7 @@ import { EB_Garamond, Inter } from 'next/font/google'
 import Link from 'next/link'
 import { club } from '@/data/club'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { asset } from '@/lib/asset'
 import './globals.css'
 
 // Runs before first paint: re-applies a stored theme choice so return visitors
@@ -46,7 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link href="/" aria-label={club.name} className="leading-none text-ink">
               {club.seal ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={club.seal} alt="" className="h-11 w-11 object-contain" />
+                <img src={asset(club.seal)} alt="" className="h-11 w-11 object-contain" />
               ) : (
                 <span className="font-serif text-2xl tracking-[0.14em] text-brand">{club.monogram}</span>
               )}

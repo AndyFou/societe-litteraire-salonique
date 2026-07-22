@@ -4,6 +4,7 @@ import { currentlyReading, upNext } from '@/data/books'
 import { shelf, bookId } from '@/lib/books'
 import { BookCard } from '@/components/BookCard'
 import { CoverShelf } from '@/components/CoverShelf'
+import { asset } from '@/lib/asset'
 
 export default function Home() {
   const recent = shelf.slice(0, 4)
@@ -15,7 +16,7 @@ export default function Home() {
       <section className="flex flex-col items-center text-center">
         {club.seal && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={club.seal} alt="" className="mb-10 h-40 w-40 object-contain" />
+          <img src={asset(club.seal)} alt="" className="mb-10 h-40 w-40 object-contain" />
         )}
         <h1 className="font-serif text-4xl leading-tight text-balance text-brand sm:text-6xl">
           {club.name}
