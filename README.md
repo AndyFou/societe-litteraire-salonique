@@ -1,4 +1,4 @@
-# Société Littéraire du Salonique
+# Société Littéraire de Salonique
 
 A small static site for the reading club: who we are, what we have read, and what we are reading now.
 
