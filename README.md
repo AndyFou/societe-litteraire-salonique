@@ -58,13 +58,52 @@ data/
   club.ts           ← the club's words
 lib/
   books.ts          sorting, date formatting, stat aggregation
+  asset.ts          prefixes image paths with the base path (for the Pages subpath)
 public/
   covers/           book cover images, one per book number
+scripts/
+  check-export.mjs  post-build guard: fails if any link/asset is broken
+.github/workflows/
+  deploy.yml        build → verify → publish to GitHub Pages on every push
 ```
+
+## Deployment
+
+The site deploys to **GitHub Pages** automatically. Every push to `main` triggers
+`.github/workflows/deploy.yml`, which:
+
+1. **builds** a static export (`next build` with `output: 'export'` → an `out/` folder),
+2. **verifies** it with `npm run check:export` — this crawls every exported page and
+   fails if any internal link or cover doesn't resolve, and
+3. **publishes** to Pages — but only if the check passed. A broken build blocks the
+   deploy, so the currently-live site stays up rather than going dark.
+
+Live at **https://andyfou.github.io/societe-litteraire-salonique/**.
+
+### One-time setup
+
+In the repo on GitHub: **Settings → Pages → Build and deployment → Source → GitHub Actions.**
+(Only needed once; after that, pushes deploy on their own.)
+
+### Preview the real thing before pushing
+
+```bash
+npm run verify:pages
+```
+
+This builds exactly as CI does — under the `/societe-litteraire-salonique/` subpath —
+and runs the same check, so you catch a "works locally, broken live" problem on your
+machine in seconds. The subpath is why covers go through `lib/asset.ts`: GitHub Pages
+serves the site under `/<repo>/`, and a bare `/covers/…` path would 404 there.
+
+> **If you rename the repo,** update `NEXT_PUBLIC_BASE_PATH` in `.github/workflows/deploy.yml`
+> (and in the `verify:pages` script in `package.json`) to match the new name.
+
+Deploying to **Vercel** instead needs no config and no subpath — import the repo and it
+just works (the base path stays empty unless the Pages workflow sets it).
 
 ## Notes
 
 - Type is EB Garamond + Inter. EB Garamond is used because it has real Greek
   glyphs — most display serifs on Google Fonts don't, and much of the shelf is Greek.
 - The site follows the reader's system light/dark preference, with a toggle to override it.
-- Deploys to Vercel as-is: import the repo, no environment variables needed.
