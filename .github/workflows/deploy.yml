@@ -19,6 +19,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Serve under /<repo>/ on github.io. Change this if the repo is renamed.
+    env:
+      NEXT_PUBLIC_BASE_PATH: /societe-litteraire-salonique
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -28,9 +31,8 @@ jobs:
       - run: npm ci
       - name: Build static site
         run: npm run build
-        env:
-          # Serve under /<repo>/ on github.io. Change this if the repo is renamed.
-          NEXT_PUBLIC_BASE_PATH: /societe-litteraire-salonique
+      - name: Verify the export (blocks deploy if anything is broken)
+        run: npm run check:export
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./out

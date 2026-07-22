@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check:export": "node scripts/check-export.mjs",
+    "verify:pages": "export NEXT_PUBLIC_BASE_PATH=/societe-litteraire-salonique && next build && node scripts/check-export.mjs"
   },
   "dependencies": {
     "react": "^18",
